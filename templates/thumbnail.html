@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Recommendations</title>
+    <link rel="stylesheet" href="static/css/stylii.css" />
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+                   
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/keyword.html">Search</i></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Preference <i class="fa fa-search"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html">History <i class="fa fa-search"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="image-container" style="display: flex; flex-wrap: wrap; ">
+        {% for index, thumbnail in enumerated_thumbnails %}
+            <div class="image-tile">
+                <img src="{{ thumbnail }}" alt="Recommendation">
+                <h2>{{ title[index] }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
