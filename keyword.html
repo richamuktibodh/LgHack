@@ -41,14 +41,7 @@
             <div class="col-md-10 col-12 mx-auto">
                 <div class="main_content">
                     <form id="searchForm" method="get" class="temp_form">
-                        <label for="deviceID">Enter your Device ID</label>
-                        <select name="deviceID" id="deviceID">
-                            <option value="02135de2ef0a1a96f0f237dcb0c2af8c">02135de2ef0a1a96f0f237dcb0c2af8c</option>
-                            <option value="46840a3d8f5c3f95b793ac16b16cdc95">46840a3d8f5c3f95b793ac16b16cdc95</option>
-                            <option value="418073388c3dc016012824f6e3a10088">418073388c3dc016012824f6e3a10088</option>
-                            <option value="f7c73bddecbc04dba77beb4316fcbde1">f7c73bddecbc04dba77beb4316fcbde1</option>
-                            <option value="55d55983f582a87d8c141f5d7ca50130">55d55983f582a87d8c141f5d7ca50130</option>
-                        </select>
+                        <input type="text" id="genre" placeholder="Enter your preferred movie" autocomplete="off">
                         <input type="submit" value="Search" id="submitBtn">
                     </form>
                 </div>
@@ -67,8 +60,8 @@
     <script>
         document.getElementById("searchForm").addEventListener("submit", function (event) {
             event.preventDefault()
-            var keyword = document.getElementById("deviceID").value;
-            window.location.href = "http://127.0.0.1:5000/" + keyword;
+            var genreValue = document.getElementById("genre").value;
+            window.location.href = "http://127.0.0.1:5000/" + genreValue;
         });
     </script>
 
