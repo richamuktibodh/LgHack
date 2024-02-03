@@ -37,7 +37,8 @@
         <div class="row">
             <div class="col-md-10 col-12 mx-auto">
                 <div class="main_content">
-                    <form class="temp_form">
+                    <!-- <form action="http://127.0.0.1:5000" method="get" class="temp_form"> -->
+                        <form id="searchForm" method="get" class="temp_form">
                         <input type="text" id="genre" placeholder="Enter your preferred genre" autocomplete="off">
                         <input type="submit" value="Search" id="submitBtn">
                     </form>
@@ -53,6 +54,15 @@
     <footer>
         <p>Created by Enigma</p>
     </footer>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function (event) {
+            event.preventDefault()
+            var genreValue = document.getElementById("genre").value;
+            window.location.href = "http://127.0.0.1:5000/" + genreValue;
+        });
+    </script>
+
 </body>
 
 </html>
