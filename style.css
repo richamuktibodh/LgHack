@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,200;8..30,300;8..30,400;8..30,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,200;8..30,300;8..30,400;8..30,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap'); */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Piazzolla', serif;
+    /* background-color: ; */
 }
 
 :root {
@@ -21,15 +22,33 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: black;
 }
-
+nav{
+    background-color: #1e202b;
+}
+nav p{
+    font-size: 25px;
+  padding-top: 25px;
+}
 .row {
     margin: 0;
 }
 
+.collapse navbar-collapse{
+    display: flex;
+    justify-content: space-between;
+}
 .navbar {
     color: #fff;
-    background-color: var(--main-bg);
+    background-color:black;
+    height: 80px;
+}
+.navbar ul{
+    display: flex;
+    /* justify-content: end; */
+    padding-top:10px;
+    margin-right: 20px;
 }
 
 .navbar li {
@@ -58,8 +77,8 @@ body {
 .temp_form input[type="text"]{
     width: 100%;
     padding: 2rem 5rem 2rem 5rem;
-    background: #1e202b;
-    color: white;
+    background: white;
+    color: BLACK;
     outline: none;
     border: none;
     margin-bottom: 1rem;
@@ -72,7 +91,7 @@ body {
     right: 5px;
     bottom: 5px;
     border: none;
-    background: #009ad8;
+    background: red;
     padding: 0 3rem;
     border-radius: 3rem;
     color: white;
@@ -87,8 +106,8 @@ body {
 .temp_form select{
     width: 100%;
     padding: 2rem 5rem 2rem 5rem;
-    background: #1e202b;
-    color: white;
+    background: white;
+    color: #1e202b;
     outline: none;
     border: none;
     margin-bottom: 1rem;
@@ -105,7 +124,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: var(--main-bg);
+    background-color: black;
     color: white;
     text-align: center;
 }
@@ -119,3 +138,26 @@ footer p {
 }
 
 /* Thumbnails */
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 50px; /* Adjust this value based on your design */
+    max-height: 10px; /* Adjust this value based on your design */
+}
+
+#genre{
+    width: 490px;
+}
+
+#submitBtn{
+    padding: 10px;
+    width: 120px;
+}
+.image-container img {
+    margin: 10px;
+    max-width: 10px; /* Adjust this value based on your design */
+    max-height: 20px; /* Adjust this value based on your design */
+}
