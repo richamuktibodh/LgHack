@@ -144,33 +144,43 @@ def search_ott():
 
 
 bookmarks = {}
-@app.route("/bookmark")
+
+@app.route("/bookmark", methods=["POST"])
 def bookmark_click():
-    # Retrieve device ID and click ID from the request
-    device_id = request.json.get("device_id")
-    click_id = request.json.get("click_id")
+    data = request.json
+    device_id = data.get("device_id")
+    click_id = data.get("click_id")
 
     if not device_id or not click_id:
         return jsonify({"error": "Device ID and Click ID are required"}), 400
 
-    # Check if the device_id is already in the bookmarks dictionary
     if device_id not in bookmarks:
         bookmarks[device_id] = []
 
-    # Add the click_id to the vector for the given device_id
-    bookmarks[device_id].append(click_id)
+    if click_id in bookmarks[device_id]:
+        bookmarks[device_id].remove(click_id)
+        return jsonify({"message": "Video removed from bookmarks"})
+    else:
+        bookmarks[device_id].append(click_id)
+        return jsonify({"message": "Video added to bookmarks"})
 
-    return jsonify({"message": "Click bookmarked successfully"})
+# @app.route("/bookmarks/<int:device_id>")
+# def get_bookmarks(device_id):
+#     if device_id not in bookmarks:
+#         return jsonify({"message": "No bookmarks found for the device"}), 404
+
+#     device_bookmarks = bookmarks[device_id]
+#     return jsonify({"device_id": device_id, "bookmarks": device_bookmarks})
 
 
-@app.route("/bookmarks/<int:device_id>")
-def get_bookmarks(device_id):
-    # Retrieve bookmarks for a specific device_id
-    if device_id not in bookmarks:
-        return jsonify({"message": "No bookmarks found for the device"}), 404
+# @app.route("/bookmarks/<int:device_id>")
+# def get_bookmarks(device_id):
+#     # Retrieve bookmarks for a specific device_id
+#     if device_id not in bookmarks:
+#         return jsonify({"message": "No bookmarks found for the device"}), 404
 
-    device_bookmarks = bookmarks[device_id]
-    return jsonify({"device_id": device_id, "bookmarks": device_bookmarks})
+#     device_bookmarks = bookmarks[device_id]
+#     return jsonify({"device_id": device_id, "bookmarks": device_bookmarks})
 
 
 

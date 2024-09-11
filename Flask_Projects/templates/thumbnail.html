@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,8 +89,35 @@
             <div class="image-tile">
                 <img src="{{ thumbnail }}" alt="Recommendation">
                 <h2>{{ title[index] }}</h2>
+                <button class="mark-button" data-index="{{ index }}">>Mark as {{ is_marked[index] ? 'Unmarked' : 'Marked' }}</button>
             </div>
         {% endfor %}
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const markButtons = document.querySelectorAll('.mark-button');
+
+            markButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.dataset.index;
+                    fetch('/bookmark', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ device_id: 'YOUR_DEVICE_ID', click_id: index }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.message);  // Log the response from the server
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

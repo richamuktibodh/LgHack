@@ -1,0 +1,143 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Recommendations</title>
+    <link rel="stylesheet" href="static/styles.css" />
+
+</head>
+<body>
+    <div class="image-container">
+        {% for thumbnail in thumbnails %}
+            <div class="image-tile">
+                <img src="{{ thumbnail }}" alt="Recommendation">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Recommendations</title>
+    <link rel="stylesheet" href="static/css/stylii.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Piazzolla', serif;
+            /* background-color: ; */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        nav {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            width: 100%; 
+            padding: 20px;
+            height: 80px;/* Set the width to 100% */
+            display: flex;
+            justify-content: flex-end; /* Move all text to the right */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+                image-container {
+            display: flex;
+        }
+        ul{
+            display: flex;
+            list-style:none;
+        }
+
+        .image-tile img {
+            height: 200px;
+            width: 361px;
+            object-fit: cover;
+        } 
+        .navbar-nav ml-auto{
+            display: flex;
+        }
+        .image-tile{
+            margin: 10px;
+        }
+        h2{
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">          
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5500/templates/keyword.html">Search</i></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5500//templates/index.html">Preference <i class="fa fa-search"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5500/templates/history.html">History <i class="fa fa-search"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="image-container" style="display: flex; flex-wrap: wrap; ">
+        <h1 style="color: white;">Recommended Videos</h1>
+        {% for index, thumbnail in enumerated_thumbnails %}
+            <div class="image-tile">
+                <img src="{{ thumbnail }}" alt="Recommendation">
+                <h2>{{ title[index] }}</h2>
+                <button class="mark-button" data-index="{{ index }}">>Mark as {{ is_marked[index] ? 'Unmarked' : 'Marked' }}</button>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const markButtons = document.querySelectorAll('.mark-button');
+
+            markButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.dataset.index;
+                    fetch('/bookmark', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ device_id: 'YOUR_DEVICE_ID', click_id: index }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.message);  // Log the response from the server
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
